@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+ <html lang="en">
+ <head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial
+scale=1.0">
+ <title>Biomass Index Calculator</title>
+ <style> body {
+ font-family: Arial, sans-serif; background-color: #f4f4f4; margin: 0;
+ padding: 0; display: flex;
+ align-items: center; justify-content: center;
+ height: 100vh;
+ }
+ #calculator { background-color: #fff; padding: 20px;
+ border-radius: 8px;
+ box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+ }
+ input  { width: 100%; padding: 8px;
+ margin: 8px 0;
+ box-sizing: border-box;
+ }
+ button  { width: 100%; padding: 10px;
+ background-color: #4caf50; color:  #fff;
+ border: none;
+ border-radius: 4px; cursor: pointer;
+ }
+ #result {
+ margin-top: 20px;
+ }
+ </style>
+ </head>
+ <body>
+ <div id="calculator">
+ <h2>Biomass Index Calculator</h2>
+ <label for="time">Total Time (days):</label>
+ <input type="number" id="time" placeholder="Enter total time">
+ <label for="latitude">Latitude (degrees):</label>
+ <input type="number" id="latitude" placeholder="Enter latitude">
+ <label for="solarConstant">Solar Constant (W/m²):</label>
+ <input type="number" id="solarConstant" placeholder="Enter solar constant">
+ <label for="precipitation">Precipitation (cm/day):</label>
+ <input type="number" id="precipitation" placeholder="Enter precipitation">
+ <button onclick="calculateBiomassIndex()">Calculate Biomass Index</button>
+ <div id="result"></div>
+ </div>
+ <script>
+ function calculateBiomassIndex() {
+ var t = parseFloat(document.getElementById('time').value);
+ var L = parseFloat(document.getElementById('latitude').value);
+ var D = parseFloat(document.getElementById('solarConstant').value); var r = 
+parseFloat(document.getElementById('precipitation').value);
+ var S = r * 10;
+ var A = Math.PI * ((L / 90) ** 2); var V = S * A;
+ var I = (V / 1000) * (D / 1000);
+ var resultElement = document.getElementById('result'); 
+resultElement.innerHTML = `
+ <p>The precipitation in mm/day is: ${S.toFixed(2)}</p>
+ <p>The surface area of the biomass is: ${A.toFixed(2)} square meters</p>
+ <p>The volumetric water content is: ${V.toFixed(2)} liters per square meter</p>
+ <p>The Biomass Index I is: ${I.toFixed(2)}</p>
+ `;
+ }
+ </script>
+ </body>
+ </html>
